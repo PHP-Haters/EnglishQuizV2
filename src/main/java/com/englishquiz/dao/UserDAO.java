@@ -27,7 +27,8 @@ public class UserDAO {
             user = (User) session.createQuery("FROM User WHERE email = :email")
                     .setParameter("email", email)
                     .uniqueResult();
-        } catch (Exception e) {
+        }
+         catch (Exception e) {
             e.printStackTrace();
         }
         return user;
