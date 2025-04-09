@@ -23,8 +23,7 @@ public class User {
 
     public User() {}
 
-    public User(int id, String email, String password) {
-        this.id = id;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
         type = Type.USER;

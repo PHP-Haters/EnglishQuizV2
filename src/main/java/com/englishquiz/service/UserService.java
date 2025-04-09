@@ -7,6 +7,17 @@ public class UserService {
 
     private UserDAO userDAO = new UserDAO();
 
+    public void criarUserPadrao() {
+        User user = userDAO.getUserByEmail("admin@gmail.com");
+
+        if(user != null) {
+            return;
+        }
+        else {
+            userDAO.save(new User("admin@gmail.com", "admin"));
+        }
+    }
+
     //* Verificação para saber se está certo ou não
     public User verificacaoDeEmail(String email) {
         if (!email.contains("@")) {
