@@ -43,7 +43,7 @@ public class LevelController implements Controller {
         }
 
         if (nivelEscolhido != null) {
-            new QuestionController().mostrarQuestoesDoNivel(nivelEscolhido);
+            new QuestionController(nivelEscolhido).abrirView();
         } else {
             text.mensagemDeErroGenerico("Nível não encontrado.");
             abrirView();

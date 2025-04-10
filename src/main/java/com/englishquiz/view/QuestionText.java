@@ -1,26 +1,19 @@
 package com.englishquiz.view;
 
 import com.englishquiz.model.Question;
-import java.util.List;
     
-public class QuestionText {
-
-    public void mostrarQuestoesDoNivel(String nomeDoNivel, List<Question> questoes) {
+public class QuestionText extends Text {
+    
+    public void mostrarQuestao(int contador, Question q) {
+        this.limparConsole();
+        System.out.println(" QUESTÕES DO NÍVEL: " + q.getLevel().getNomeLevel().toUpperCase());
         System.out.println("\n---------------------------");
-        System.out.println(" QUESTÕES DO NÍVEL: " + nomeDoNivel.toUpperCase());
-        System.out.println("---------------------------");
-
-        if (questoes.isEmpty()) {
-            System.out.println("Nenhuma questão disponível para este nível.");
-        } else {
-            int contador = 1;
-            for (Question q : questoes) {
-                System.out.println(contador + ". " + q.getText());
-                contador++;
-            }
-        }
-
-        System.out.println("\n(Pressione 0 para voltar ao menu)");
+        System.out.println(contador+1 + ". " + q.getText());
+        if(contador != 0)
+            System.out.println("Digite 1 para ver a pergunta anterior.");
+        if(contador != 4)
+            System.out.println("Digite 2 para ver a próxima pergunta.");
+        System.out.println("\n---------------------------");
     }
 }
 
