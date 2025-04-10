@@ -1,11 +1,11 @@
 package com.englishquiz.service;
 
+import java.util.List;
+
 import com.englishquiz.dao.QuestionDAO;
 import com.englishquiz.model.Level;
-import com.englishquiz.model.Question;
 import com.englishquiz.model.Level.Types;
-
-import java.util.List;
+import com.englishquiz.model.Question;
 
 public class QuestionService {
     
@@ -25,25 +25,25 @@ public class QuestionService {
             }
 
             // Questões nível iniciante
-            questionDAO.save(new Question("What is your name?", iniciante));
-            questionDAO.save(new Question("Where do you live?", iniciante));
-            questionDAO.save(new Question("Do you like pizza?", iniciante));
-            questionDAO.save(new Question("How old are you?", iniciante));
-            questionDAO.save(new Question("What is your favorite color?", iniciante));
+            questionDAO.save(new Question("I ____ Brazilian and i live in Foz do iguaçu!", iniciante));
+            questionDAO.save(new Question("My name ___ Ana. ", iniciante));
+            questionDAO.save(new Question("She ___ very happy today.", iniciante));
+            questionDAO.save(new Question("We ___ in Brazil. ", iniciante));
+            questionDAO.save(new Question("___ are my best friends. ", iniciante));
 
             // Questões nível intermediário
-            questionDAO.save(new Question("What are you doing?", intermediario));
-            questionDAO.save(new Question("Can you help me with this problem?", intermediario));
-            questionDAO.save(new Question("What did you do last weekend?", intermediario));
-            questionDAO.save(new Question("How often do you go to the gym?", intermediario));
-            questionDAO.save(new Question("What kind of music do you usually listen to?", intermediario));
+            questionDAO.save(new Question("If I ___ more time, I would learn to play the piano. ", intermediario));
+            questionDAO.save(new Question("She ___ already finished her homework before dinner.", intermediario));
+            questionDAO.save(new Question("They ___ seen that movie twice this week. ", intermediario));
+            questionDAO.save(new Question("We will go out ___ it stops raining. ", intermediario));
+            questionDAO.save(new Question("If I ___ you, I would take that job offer. ", intermediario));
 
             // Questões nível avançado
-            questionDAO.save(new Question("Have you ever been abroad?", avancado));
-            questionDAO.save(new Question("What would you have done differently?", avancado));
-            questionDAO.save(new Question("If you could travel anywhere in the world, where would you go and why?", avancado));
-            questionDAO.save(new Question("What are the pros and cons of working remotely?", avancado));
-            questionDAO.save(new Question("How do you think technology is affecting human relationships?", avancado));
+            questionDAO.save(new Question("By the end of next year, I ___ working in this company for ten years. ", avancado));
+            questionDAO.save(new Question("Not only ___ she finish the project on time, but she also exceeded everyone's expectations.", avancado));
+            questionDAO.save(new Question("I will call you as soon as I ___ from the meeting. ", avancado));
+            questionDAO.save(new Question("Little ___ he understand the consequences of his decision. ", avancado));
+            questionDAO.save(new Question("No matter how hard she tried, she ___ persuade him to change his mind.", avancado));
 
             System.out.println("Questões padrão criadas com sucesso!");
         }

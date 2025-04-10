@@ -104,7 +104,7 @@ public class UserController implements Controller {
             
             return;
         }
-        User newUser = new User(0, newUserEmail, "");
+        User newUser = new User(newUserEmail, "");
         registerSenhaInput(newUser);
     }
     private void registerSenhaInput(User newUser) {

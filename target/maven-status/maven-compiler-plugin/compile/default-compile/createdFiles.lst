@@ -17,6 +17,7 @@ com\englishquiz\server\Session.class
 com\englishquiz\controller\MainController.class
 com\englishquiz\service\UserService.class
 com\englishquiz\dao\LevelDAO.class
+com\englishquiz\model\Answer.class
 com\englishquiz\view\LoginText.class
 com\englishquiz\dao\QuestionDAO.class
 com\englishquiz\dao\UserDAO.class
