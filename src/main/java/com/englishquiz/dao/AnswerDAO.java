@@ -1,20 +1,20 @@
 package com.englishquiz.dao;
 
-import com.englishquiz.model.Level;
 import com.englishquiz.model.Question;
+import com.englishquiz.model.Answer;
 import com.englishquiz.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class QuestionDAO {
+public class AnswerDAO {
 
-    public void save(Question question) {
+    public void save(Answer answer) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(question);
+            session.save(answer);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
@@ -22,16 +22,16 @@ public class QuestionDAO {
         }
     }
 
-    public List<Question> findAll() {
+    public List<Answer> findAll() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Question ORDER BY id", Question.class).list();
+            return session.createQuery("from Answer", Answer.class).list();
         }
     }
 
-    public List<Question> findByLevel(Level level) {
+    public List<Answer> findByLevel(Question question) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Question where level = :level", Question.class)
-                    .setParameter("level", level)
+            return session.createQuery("from Question where question = :question", Answer.class)
+                    .setParameter("question", question)
                     .list();
         }
     }
