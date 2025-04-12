@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.englishquiz.dao.AnswerDAO;
 import com.englishquiz.model.Answer;
+import com.englishquiz.model.Level;
 import com.englishquiz.model.Question;
 
 public class AnswerService {
@@ -91,5 +92,9 @@ public class AnswerService {
         answerDAO.save(new Answer("(a) can't", questoes.get(14), false));
         answerDAO.save(new Answer("(b) couldn't", questoes.get(14), true));
         answerDAO.save(new Answer("(c) wasn't", questoes.get(14), false));
+    }
+
+    public List<Answer> listarPorPergunta(Question question) {
+        return answerDAO.findByQuestion(question);
     }
 }

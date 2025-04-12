@@ -28,9 +28,9 @@ public class AnswerDAO {
         }
     }
 
-    public List<Answer> findByLevel(Question question) {
+    public List<Answer> findByQuestion(Question question) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Question where question = :question", Answer.class)
+            return session.createQuery("from Answer where question = :question", Answer.class)
                     .setParameter("question", question)
                     .list();
         }

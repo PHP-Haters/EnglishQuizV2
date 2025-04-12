@@ -13,6 +13,7 @@ public class QuestionController implements Controller {
     private QuestionService questionService = new QuestionService();
     private QuestionText questionText = new QuestionText();
     private Scanner scanner = new Scanner(System.in);
+    private AnswerController answerController;
 
     private int escolhaDeUsuario;
     private Level levelAtual;
@@ -30,12 +31,15 @@ public class QuestionController implements Controller {
 
     @Override
     public void abrirView() {
+        answerController = new AnswerController(questoes.get(contadorQuestaoAtual));
+
         questionText.mostrarQuestao(contadorQuestaoAtual, questoes.get(contadorQuestaoAtual));
+        answerController.abrirView();
+        questionText.trocarPergunta();
         receberRespota();
     }
 
     public void receberRespota() {
-
         setarEscolhaNumerica();
         switch (escolhaDeUsuario) {
             case 1:
