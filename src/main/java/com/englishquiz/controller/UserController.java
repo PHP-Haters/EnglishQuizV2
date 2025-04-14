@@ -8,6 +8,7 @@ import com.englishquiz.model.User;
 import com.englishquiz.service.UserService;
 import com.englishquiz.view.LoginText;
 import com.englishquiz.view.Profile;
+import com.englishquiz.controller.MainController;
 
 public class UserController implements Controller {
     LoginText loginText;
@@ -75,6 +76,11 @@ public class UserController implements Controller {
         if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
             Session.getInstance().setLoggedUser(usuarioEncontrado);
             loginText.limparConsole();
+
+            if(Session.getInstance().getLoggedUser() != null) {
+                MainController mainController = new MainController();
+                mainController.abrirView();
+            }
         }
         else {
             loginText.mensagemDeErroGenerico("Senha incorreta!");
