@@ -35,37 +35,43 @@ public class QuestionController implements Controller {
 
         questionText.mostrarQuestao(contadorQuestaoAtual, questoes.get(contadorQuestaoAtual));
         answerController.abrirView();
-        questionText.trocarPergunta();
-        receberRespota();
+        questionText.pedirResposta();
+        receberResposta();
     }
 
-    public void receberRespota() {
+    public void receberResposta() {
         setarEscolhaNumerica();
         switch (escolhaDeUsuario) {
             case 1:
-            voltarPergunta();
+                
                 break;
             case 2:
-                proximaPergunta();
+                
+                break;
+            case 3:
+
                 break;
             case 0:
                 new LevelController().abrirView(); // Volta pro menu de níveis
                 return;
             default:
-                receberRespota();
+                receberResposta();
                 break;
         }
     }
-    private void voltarPergunta() {
-        if(contadorQuestaoAtual != 0)
-            contadorQuestaoAtual--;
-        abrirView();
-    }
-    private void proximaPergunta() {
-        if(contadorQuestaoAtual != 4)
-            contadorQuestaoAtual++;
-        abrirView();
-    }
+
+    // private void voltarPergunta() {
+    //     if(contadorQuestaoAtual != 0)
+    //         contadorQuestaoAtual--;
+    //     abrirView();
+    // }
+
+    // private void proximaPergunta() {
+    //     if(contadorQuestaoAtual != 4)
+    //         contadorQuestaoAtual++;
+    //     abrirView();
+    // }
+    
     protected void setarEscolhaNumerica() {
         try {
             this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());

@@ -21,6 +21,10 @@ public class QuestionText extends Text {
         if(contador != 4)
             System.out.println("Digite 2 para ver a próxima pergunta.");
     }
+
+    public void pedirResposta(){
+        System.out.println("\nDigite sua resposta (1,2 ou 3) ou zero (0) para retornar ao menu de níveis: ");
+    }
 }
 
     
