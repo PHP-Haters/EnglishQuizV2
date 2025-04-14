@@ -8,7 +8,7 @@ import com.englishquiz.model.User;
 import com.englishquiz.service.UserService;
 import com.englishquiz.view.LoginText;
 import com.englishquiz.view.Profile;
-import com.englishquiz.controller.MainController;
+//import com.englishquiz.controller.MainController;
 
 public class UserController implements Controller {
     LoginText loginText;
