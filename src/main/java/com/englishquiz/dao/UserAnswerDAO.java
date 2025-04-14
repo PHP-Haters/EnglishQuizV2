@@ -1,8 +1,13 @@
 package com.englishquiz.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.englishquiz.model.Answer;
+import com.englishquiz.model.Question;
+import com.englishquiz.model.User;
 import com.englishquiz.model.UserAnswer;
 import com.englishquiz.util.HibernateUtil;
 
@@ -18,6 +23,16 @@ public class UserAnswerDAO {
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
+        }
+    }
+    public List<UserAnswer> findByUser(User user) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from UserAnswer ua "+
+            // "INNER JOIN ua.user u "+
+            //  "INNER JOIN ua.answer "+
+             "WHERE ua.user = :user", UserAnswer.class)
+                    .setParameter("user", user)
+                    .list();
         }
     }
 }

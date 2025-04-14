@@ -1,6 +1,10 @@
 package com.englishquiz.service;
 
+import com.englishquiz.model.User;
 import com.englishquiz.model.UserAnswer;
+
+import java.util.List;
+
 import com.englishquiz.dao.UserAnswerDAO;
 
 public class UserAnswerService {
@@ -8,5 +12,8 @@ public class UserAnswerService {
 
     public void enviarResposta(UserAnswer userAnswer){
         userAnswerDAO.save(userAnswer);
+    }
+    public List<UserAnswer> encontrarPorUsuario(User user) {
+        return userAnswerDAO.findByUser(user);
     }
 }
