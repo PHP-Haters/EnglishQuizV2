@@ -21,7 +21,7 @@ public class QuestionController implements Controller {
     private AnswerController answerController;
     private UserAnswerService userAnswerService = new UserAnswerService();
 
-    private int escolhaDeUsuario;
+    private String escolhaDeUsuario;
     private Level levelAtual;
     private List<Question> questoes;
     private int contadorQuestaoAtual = 0;
@@ -46,23 +46,42 @@ public class QuestionController implements Controller {
     }
 
     public void receberResposta() {
-        setarEscolhaNumerica();
-        if(escolhaDeUsuario == 1 || escolhaDeUsuario == 2 || escolhaDeUsuario == 3){
-            //Aqui temos que achar um jeito de descobrir o id da resposta selecionada
-
-            //Criando o userAnswer que será enviado ao DB
-            Answer selectedAnswer = new Answer();
-            User currentUser = Session.getInstance().getLoggedUser();           
-            UserAnswer userAnswer = new UserAnswer(currentUser, selectedAnswer);
-            
-            userAnswerService.enviarResposta(userAnswer);
-        } else if (escolhaDeUsuario == 0) {
+        setarEscolha();
+        if(escolhaDeUsuario.compareTo("a") == 0  || escolhaDeUsuario.compareTo("b") == 0 || escolhaDeUsuario.compareTo("c") == 0){
+            buscarResposta();
+        } else if (escolhaDeUsuario == "0") {
             new LevelController().abrirView(); // Volta pro menu de níveis
         } else {
             receberResposta();
         }
     }
 
+    private void buscarResposta() {
+        AnswerController answerController = new AnswerController(questoes.get(contadorQuestaoAtual));
+        Answer respostaEscolhida = answerController.encontrarResposta(escolhaDeUsuario);
+        System.err.println(respostaEscolhida.getContent());
+
+        criarRespostaDoUsuario(respostaEscolhida);
+    }
+
+    private void criarRespostaDoUsuario(Answer respostaEscolhida) {
+        //Criando o userAnswer que será enviado ao DB
+        User currentUser = Session.getInstance().getLoggedUser();         
+        UserAnswer userAnswer = new UserAnswer(currentUser, respostaEscolhida);        
+        userAnswerService.enviarResposta(userAnswer);
+
+        continuarPerguntas();
+    }
+    private void continuarPerguntas() {
+        if(contadorQuestaoAtual != 4) {
+            contadorQuestaoAtual++;
+            abrirView();
+        }
+        else {
+            new LevelController().abrirView();
+        }
+            
+    }
     // private void voltarPergunta() {
     //     if(contadorQuestaoAtual != 0)
     //         contadorQuestaoAtual--;
@@ -75,9 +94,9 @@ public class QuestionController implements Controller {
     //     abrirView();
     // }
     
-    protected void setarEscolhaNumerica() {
+    protected void setarEscolha() {
         try {
-            this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());
+            this.escolhaDeUsuario = scanner.nextLine();
         } catch (Exception e) {
             questionText.mensagemDeErroGenerico("Escolha uma opção valida");
         }

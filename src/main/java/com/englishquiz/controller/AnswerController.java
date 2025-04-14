@@ -26,5 +26,10 @@ public class AnswerController implements Controller{
     public void abrirView() {
         answerText.mostrarRespostasDaPergunta(respostasDaQuestao);
     }
-    
+
+    public Answer encontrarResposta(String escolhida) {
+        escolhida = '('+escolhida+')';
+        return answerService.encontrarRespostaCom(escolhida, this.currentQuestion);
+    }
+
 }

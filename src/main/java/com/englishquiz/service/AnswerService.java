@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.englishquiz.dao.AnswerDAO;
 import com.englishquiz.model.Answer;
-import com.englishquiz.model.Level;
 import com.englishquiz.model.Question;
 
 public class AnswerService {
@@ -96,5 +95,9 @@ public class AnswerService {
 
     public List<Answer> listarPorPergunta(Question question) {
         return answerDAO.findByQuestion(question);
+    }
+
+    public Answer encontrarRespostaCom(String escolhida, Question questao) {
+        return answerDAO.findAnswerWith(escolhida, questao);
     }
 }

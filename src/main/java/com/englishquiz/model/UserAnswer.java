@@ -9,11 +9,11 @@ public class UserAnswer {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_resposta")
     private Answer answer;
 
