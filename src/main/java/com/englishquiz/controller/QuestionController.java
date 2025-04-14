@@ -2,7 +2,12 @@ package com.englishquiz.controller;
 
 import com.englishquiz.model.Level;
 import com.englishquiz.model.Question;
+import com.englishquiz.model.User;
+import com.englishquiz.model.Answer;
+import com.englishquiz.model.UserAnswer;
+import com.englishquiz.server.Session;
 import com.englishquiz.service.QuestionService;
+import com.englishquiz.service.UserAnswerService;
 import com.englishquiz.view.QuestionText;
 
 import java.util.List;
@@ -14,6 +19,7 @@ public class QuestionController implements Controller {
     private QuestionText questionText = new QuestionText();
     private Scanner scanner = new Scanner(System.in);
     private AnswerController answerController;
+    private UserAnswerService userAnswerService = new UserAnswerService();
 
     private int escolhaDeUsuario;
     private Level levelAtual;
@@ -41,22 +47,19 @@ public class QuestionController implements Controller {
 
     public void receberResposta() {
         setarEscolhaNumerica();
-        switch (escolhaDeUsuario) {
-            case 1:
-                
-                break;
-            case 2:
-                
-                break;
-            case 3:
+        if(escolhaDeUsuario == 1 || escolhaDeUsuario == 2 || escolhaDeUsuario == 3){
+            //Aqui temos que achar um jeito de descobrir o id da resposta selecionada
 
-                break;
-            case 0:
-                new LevelController().abrirView(); // Volta pro menu de níveis
-                return;
-            default:
-                receberResposta();
-                break;
+            //Criando o userAnswer que será enviado ao DB
+            Answer selectedAnswer = new Answer();
+            User currentUser = Session.getInstance().getLoggedUser();           
+            UserAnswer userAnswer = new UserAnswer(currentUser, selectedAnswer);
+            
+            userAnswerService.enviarResposta(userAnswer);
+        } else if (escolhaDeUsuario == 0) {
+            new LevelController().abrirView(); // Volta pro menu de níveis
+        } else {
+            receberResposta();
         }
     }
 

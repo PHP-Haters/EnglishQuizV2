@@ -26,4 +26,5 @@ public class AnswerController implements Controller{
     public void abrirView() {
         answerText.mostrarRespostasDaPergunta(respostasDaQuestao);
     }
+    
 }

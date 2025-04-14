@@ -17,5 +17,6 @@
         <mapping class="com.englishquiz.model.Level"/>
         <mapping class="com.englishquiz.model.Question"/>
         <mapping class="com.englishquiz.model.Answer"/>
+        <mapping class="com.englishquiz.model.UserAnswer"/>
     </session-factory>
 </hibernate-configuration>
