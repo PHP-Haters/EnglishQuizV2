@@ -25,6 +25,7 @@ public class UserAnswerDAO {
             e.printStackTrace();
         }
     }
+    
     public List<UserAnswer> findByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from UserAnswer ua "+

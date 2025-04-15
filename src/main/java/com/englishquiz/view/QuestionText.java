@@ -22,7 +22,7 @@ public class QuestionText extends Text {
             System.out.println("Digite 2 para ver a próxima pergunta.");
     }
 
-    public void pedirResposta(){
+    public void pedirResposta() {
         System.out.println("\nDigite sua resposta (a, b ou c) ou zero (0) para retornar ao menu de níveis: ");
     }
 }
