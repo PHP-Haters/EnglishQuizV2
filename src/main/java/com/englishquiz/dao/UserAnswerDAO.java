@@ -5,8 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.englishquiz.model.Answer;
-import com.englishquiz.model.Question;
 import com.englishquiz.model.User;
 import com.englishquiz.model.UserAnswer;
 import com.englishquiz.util.HibernateUtil;
