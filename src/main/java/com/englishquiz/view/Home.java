@@ -1,19 +1,10 @@
 package com.englishquiz.view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextArea;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextPane;
-import java.awt.Color;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.event.*;
+import javax.swing.GroupLayout.*;
+import java.awt.*;
 
 public class Home extends JFrame {
     
@@ -55,7 +46,7 @@ public class Home extends JFrame {
 		btnNewButton_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                
+
 			}
 		});
 		
