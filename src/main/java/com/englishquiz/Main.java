@@ -5,15 +5,9 @@ import com.englishquiz.service.AnswerService;
 import com.englishquiz.service.LevelService;
 import com.englishquiz.service.QuestionService;
 import com.englishquiz.service.UserService;
-import com.englishquiz.view.Home;
 
 public class Main {
     public static void main(String[] args) {
-
-        
-        Home frame = new Home();
-        frame.setVisible(true);
-        
         UserService userService = new UserService();
         userService.criarUserPadrao();
         

@@ -6,19 +6,19 @@ import com.englishquiz.server.Session;
 import com.englishquiz.dao.UserDAO;
 import com.englishquiz.model.User;
 import com.englishquiz.service.UserService;
-import com.englishquiz.view.LoginText;
+import com.englishquiz.view.HomeView;
 import com.englishquiz.view.Profile;
 //import com.englishquiz.controller.MainController;
 
 public class UserController implements Controller {
-    LoginText loginText;
+    HomeView homeView;
     Profile profileScreen;
     UserService userService;
     Scanner scanner;
     int escolhaDeUsuario;
 
     public UserController() {
-        loginText = new LoginText();
+        homeView = new HomeView();
         profileScreen = new Profile();
         userService = new UserService();
         scanner = new Scanner(System.in);
@@ -28,26 +28,7 @@ public class UserController implements Controller {
 
     @Override
     public void abrirView() {
-        comecarLoginOuRegister();
-    }
-
-    //* Aqui ele vai começar o login e decidir se vai pra login ou registrar.
-    public void comecarLoginOuRegister() {
-        loginText.entrandoNoSistema();
-        setarEscolhaNumerica();
-        switch (escolhaDeUsuario) {
-            case 1:
-                inputDoEmailLogin();
-                break;
-            case 2:
-                registerEmailInput();
-                break;
-            case 3:
-                return;
-            default:
-                comecarLoginOuRegister();
-                break;
-        }
+        homeView.setVisible(true);
     }
 
     //*Funções do login
@@ -59,7 +40,7 @@ public class UserController implements Controller {
 
         User usuarioEncontrado = userService.verificacaoDeEmail(userEmail);
         if(usuarioEncontrado == null) {
-            loginText.mensagemDeErroGenerico("Email incorreto ou usuário inexistente");
+            //loginText.mensagemDeErroGenerico("Email incorreto ou usuário inexistente");
             inputDoEmailLogin();
             
             return;
@@ -75,7 +56,7 @@ public class UserController implements Controller {
 
         if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
             Session.getInstance().setLoggedUser(usuarioEncontrado);
-            loginText.limparConsole();
+            //loginText.limparConsole();
 
             if(Session.getInstance().getLoggedUser() != null) {
                 MainController mainController = new MainController();
@@ -83,7 +64,7 @@ public class UserController implements Controller {
             }
         }
         else {
-            loginText.mensagemDeErroGenerico("Senha incorreta!");
+            //loginText.mensagemDeErroGenerico("Senha incorreta!");
             inputDaSenhaLogin(usuarioEncontrado);
         }
         
@@ -97,7 +78,7 @@ public class UserController implements Controller {
 
         User usuarioEncontrado = userService.verificacaoDeEmail(newUserEmail);
         if(usuarioEncontrado != null) {
-            loginText.jaExiste();
+            //loginText.jaExiste();
             registerEmailInput();
             
             return;
@@ -105,7 +86,7 @@ public class UserController implements Controller {
 
         boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(newUserEmail);
         if(!IsEmailCorrect) {
-            loginText.mensagemDeErroGenerico("O email deve conter @");
+            //loginText.mensagemDeErroGenerico("O email deve conter @");
             registerEmailInput();
             
             return;
@@ -114,12 +95,12 @@ public class UserController implements Controller {
         registerSenhaInput(newUser);
     }
     private void registerSenhaInput(User newUser) {
-        loginText.senhaPrecisa();
+        //loginText.senhaPrecisa();
         String newPassword = senhaInput();
 
         boolean IsPasswordCorrect = userService.confirmarSeSenhaEstaCorreto(newPassword);
         if(!IsPasswordCorrect) {
-            loginText.mensagemDeErroGenerico("Senha invalida");
+            //loginText.mensagemDeErroGenerico("Senha invalida");
             registerSenhaInput(newUser);
             
             return;
@@ -128,13 +109,13 @@ public class UserController implements Controller {
         newUser.setPassword(newPassword);
 
         userService.completarRegistro(newUser);
-        comecarLoginOuRegister();
+        //comecarLoginOuRegister();
     }
 
     private boolean retornarPaginaLogin(String newInput) {
         if(newInput.compareTo("0") == 0) {
-            loginText.limparConsole();
-            comecarLoginOuRegister();
+            //loginText.limparConsole();
+            //comecarLoginOuRegister();
             
             return true;
         }
@@ -293,7 +274,7 @@ public class UserController implements Controller {
     private void finalizarSessao(){
         Session.getInstance().setLoggedUser(null);
         profileScreen.limparConsole();
-        comecarLoginOuRegister();
+        //comecarLoginOuRegister();
     }
 
     //* funções pequenas de suporte
@@ -301,15 +282,15 @@ public class UserController implements Controller {
         try {
             this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
-            loginText.mensagemDeErroGenerico("Escolha uma opção valida");
+            //loginText.mensagemDeErroGenerico("Escolha uma opção valida");
         }
     }
     protected String emailInput() {
-        loginText.pedirEmail();
+        //loginText.pedirEmail();
         return scanner.nextLine();
     }
     protected String senhaInput() {
-        loginText.pedirSenha();
+        //loginText.pedirSenha();
         return scanner.nextLine();
     }
 }

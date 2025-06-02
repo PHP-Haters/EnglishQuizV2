@@ -5,13 +5,15 @@ import javax.swing.border.*;
 import java.awt.event.*;
 import javax.swing.GroupLayout.*;
 import java.awt.*;
+import com.englishquiz.controller.UserController;
 
-public class Home extends JFrame {
+public class HomeView extends JFrame {
     
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public Home() {
+	public HomeView() {
+		UserController userController = new UserController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
