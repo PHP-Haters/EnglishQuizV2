@@ -5,9 +5,17 @@ import com.englishquiz.service.AnswerService;
 import com.englishquiz.service.LevelService;
 import com.englishquiz.service.QuestionService;
 import com.englishquiz.service.UserService;
+import com.englishquiz.view.LoginView;
 
 public class Main {
+    static LoginView loginView;;
+
     public static void main(String[] args) {
+
+
+        loginView = new LoginView();
+        loginView.setVisible(true);
+
         UserService userService = new UserService();
         userService.criarUserPadrao();
         

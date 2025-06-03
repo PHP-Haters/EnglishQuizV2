@@ -6,19 +6,19 @@ import com.englishquiz.server.Session;
 import com.englishquiz.dao.UserDAO;
 import com.englishquiz.model.User;
 import com.englishquiz.service.UserService;
-import com.englishquiz.view.HomeView;
+
 import com.englishquiz.view.Profile;
 //import com.englishquiz.controller.MainController;
 
 public class UserController implements Controller {
-    HomeView homeView;
+    
     Profile profileScreen;
     UserService userService;
     Scanner scanner;
     int escolhaDeUsuario;
 
     public UserController() {
-        homeView = new HomeView();
+        
         profileScreen = new Profile();
         userService = new UserService();
         scanner = new Scanner(System.in);
@@ -28,44 +28,36 @@ public class UserController implements Controller {
 
     @Override
     public void abrirView() {
-        homeView.setVisible(true);
+        
     }
 
     //*Funções do login
-    private void inputDoEmailLogin() {
-        String userEmail = emailInput();
-
-        if(retornarPaginaLogin(userEmail))
-            return;
-
-        User usuarioEncontrado = userService.verificacaoDeEmail(userEmail);
-        if(usuarioEncontrado == null) {
-            //loginText.mensagemDeErroGenerico("Email incorreto ou usuário inexistente");
-            inputDoEmailLogin();
-            
-            return;
-        }
-        inputDaSenhaLogin(usuarioEncontrado);
+    public boolean login(String email, String password) {
+        return validarEmail(email, password);
     }
 
-    private void inputDaSenhaLogin(User usuarioEncontrado) {
-        String senhaDoUsuario = senhaInput();
+    private boolean validarEmail(String email, String password) {
+        User usuarioEncontrado = userService.verificacaoDeEmail(email);
+        if(usuarioEncontrado == null) {
+            return false;
+        }
+        return inputDaSenhaLogin(usuarioEncontrado, password);
+    }
 
-        if(retornarPaginaLogin(senhaDoUsuario))
-            return;
+    private boolean inputDaSenhaLogin(User usuarioEncontrado, String password) {
 
-        if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
+        if(userService.verificacaoDeSenha(usuarioEncontrado, password)) {
             Session.getInstance().setLoggedUser(usuarioEncontrado);
-            //loginText.limparConsole();
 
             if(Session.getInstance().getLoggedUser() != null) {
-                MainController mainController = new MainController();
-                mainController.abrirView();
+                return true;
+            }
+            else {
+                return false;
             }
         }
         else {
-            //loginText.mensagemDeErroGenerico("Senha incorreta!");
-            inputDaSenhaLogin(usuarioEncontrado);
+            return false;
         }
         
     }

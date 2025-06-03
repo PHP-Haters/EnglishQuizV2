@@ -7,13 +7,13 @@ import javax.swing.GroupLayout.*;
 import java.awt.*;
 import com.englishquiz.controller.UserController;
 
-public class HomeView extends JFrame {
+public class LoginView extends JFrame {
     
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	public HomeView() {
-		UserController userController = new UserController();
+	private UserController userController;
+	public LoginView() {
+		userController  = new UserController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -22,33 +22,35 @@ public class HomeView extends JFrame {
 
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		JLabel lblNewLabel = new JLabel("Welcome to English Quiz!");
 		lblNewLabel.setBackground(new Color(0, 0, 0));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Yu Gothic", Font.BOLD, 24));
 		
-		JTextPane textPane = new JTextPane();
+		JTextPane email = new JTextPane();
 		
-		JTextPane textPane_1 = new JTextPane();
+		JTextPane passwordInput = new JTextPane();
 		
-		JLabel lblNewLabel_1 = new JLabel("Email:");
-		lblNewLabel_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
+		JLabel emailLabel = new JLabel("Email:");
+		emailLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		
-		JLabel lblNewLabel_2 = new JLabel("Password:");
-		lblNewLabel_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
+		JLabel passwordLabel = new JLabel("Password:");
+		passwordLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		
-		JButton btnNewButton_1 = new JButton("Register");
-		btnNewButton_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton login = new JButton("Login");
+		login.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				boolean booli = userController.login(email.getContentType(), passwordInput.getContentType());
+				System.out.println(booli);
+			}
+		});
+		JButton registerButton = new JButton("Register");
+		registerButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		
@@ -62,21 +64,21 @@ public class HomeView extends JFrame {
 					.addComponent(lblNewLabel))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(83)
-					.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addComponent(emailLabel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
 					.addGap(72)
-					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addComponent(email, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(83)
-					.addComponent(lblNewLabel_2)
+					.addComponent(passwordLabel)
 					.addGap(44)
-					.addComponent(textPane_1, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(85)
-					.addComponent(btnNewButton)
+					.addComponent(login)
 					.addGap(18)
 					.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 					.addGap(19)
-					.addComponent(btnNewButton_1))
+					.addComponent(registerButton))
 		);
 
 		gl_contentPane.setVerticalGroup(
@@ -86,23 +88,23 @@ public class HomeView extends JFrame {
 					.addComponent(lblNewLabel)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1)
+						.addComponent(emailLabel)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(3)
-							.addComponent(textPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(10)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_2)
+						.addComponent(passwordLabel)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(3)
-							.addComponent(textPane_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(39)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
+						.addComponent(login)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(4)
 							.addComponent(lblNewLabel_3))
-						.addComponent(btnNewButton_1)))
+						.addComponent(registerButton)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
