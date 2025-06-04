@@ -8,11 +8,9 @@ import com.englishquiz.service.UserService;
 import com.englishquiz.view.LoginView;
 
 public class Main {
-    static LoginView loginView;;
+    static LoginView loginView;
 
     public static void main(String[] args) {
-
-
         loginView = new LoginView();
         loginView.setVisible(true);
 

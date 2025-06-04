@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.GroupLayout.*;
 import java.awt.*;
 import com.englishquiz.controller.UserController;
+import com.englishquiz.view.MostrarUserView;
 
 public class LoginView extends JFrame {
     
@@ -37,13 +38,24 @@ public class LoginView extends JFrame {
 		
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
+
+		JLabel warningLabel = new JLabel("");
+		warningLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		
 		JButton login = new JButton("Login");
 		login.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean booli = userController.login(email.getContentType(), passwordInput.getContentType());
-				System.out.println(booli);
+			public void actionPerformed(ActionEvent e) {			
+				boolean booli = userController.login(email.getText(), passwordInput.getText());
+				if(booli == true) {
+					//todo CHAMAR PAGINA HOME
+					dispose();
+					MostrarUserView mostrarUserView = new MostrarUserView();
+					mostrarUserView.setVisible(true);
+				}
+				else {
+					warningLabel.setText("Falha no login, tente novamente");
+				}
 			}
 		});
 		JButton registerButton = new JButton("Register");
@@ -72,6 +84,8 @@ public class LoginView extends JFrame {
 					.addComponent(passwordLabel)
 					.addGap(44)
 					.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+					.addGap(10)
+					.addComponent(warningLabel)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(85)
 					.addComponent(login)
@@ -83,22 +97,29 @@ public class LoginView extends JFrame {
 
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
+				
+			.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(21)
 					.addComponent(lblNewLabel)
 					.addGap(18)
+					
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(emailLabel)
+							
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(3)
 							.addComponent(email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(10)
+					
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(passwordLabel)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(3)
 							.addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(39)
+					
+					.addComponent(warningLabel)
+					
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(login)
 						.addGroup(gl_contentPane.createSequentialGroup()

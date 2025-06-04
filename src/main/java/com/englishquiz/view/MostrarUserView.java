@@ -5,13 +5,12 @@ import javax.swing.border.*;
 import java.awt.*;
 import javax.swing.GroupLayout.*;
 
-public class MostrarUserView {
-    public class MostrarUser extends JFrame {
+    public class MostrarUserView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public MostrarUser() {
+	public MostrarUserView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -100,5 +99,4 @@ public class MostrarUserView {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-}
 }
