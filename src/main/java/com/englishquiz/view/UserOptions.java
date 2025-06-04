@@ -2,15 +2,9 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
-
-import com.englishquiz.controller.UserController;
-
 import java.awt.*;
-
-import javax.swing.GroupLayout.Alignment;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout.*;
+import java.awt.event.*;
 
 public class UserOptions {
 
@@ -20,7 +14,6 @@ public class Options extends JFrame {
 	private JPanel contentPane;
 
 	public Options() {
-        UserController userController = new UserController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 499, 306);
 		contentPane = new JPanel();

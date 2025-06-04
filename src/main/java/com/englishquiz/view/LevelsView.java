@@ -4,8 +4,6 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.englishquiz.controller.UserController;
-
 import java.awt.*;
 
 public class LevelsView {
@@ -16,7 +14,6 @@ public class Levels extends JFrame {
 	private JPanel contentPane;
 
 	public Levels() {
-        UserController userController = new UserController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

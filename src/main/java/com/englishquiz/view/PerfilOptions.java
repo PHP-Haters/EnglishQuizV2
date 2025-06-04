@@ -2,13 +2,10 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
-
-import com.englishquiz.controller.UserController;
-
 import java.awt.*;
 import java.awt.event.*;
 
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.*;
 
 public class PerfilOptions {
 
@@ -18,7 +15,6 @@ public class PerfilOption extends JFrame {
 	private JPanel contentPane;
 
 	public PerfilOption() {
-        UserController userController = new UserController();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
