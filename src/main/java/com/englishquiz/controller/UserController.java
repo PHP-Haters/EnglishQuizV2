@@ -226,18 +226,8 @@ public class UserController implements Controller {
         }
     }
 
-    protected void logout(){
-        profileScreen.limparConsole();
-
-        System.out.println("Deseja realmente fazer logout? (s/n)");
-        String res = scanner.nextLine();
-
-        if(res.equals("s")){
-            finalizarSessao();
-        } else {
-            profileScreen.limparConsole();
-            iniciarSistemaInterno();
-        }
+    public void logout(){
+        finalizarSessao();
     }
 
     private void finalizarSessao(){

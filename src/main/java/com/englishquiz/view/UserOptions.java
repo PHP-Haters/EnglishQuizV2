@@ -5,6 +5,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.englishquiz.controller.UserController;
+
 
 public class UserOptions extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -40,8 +42,11 @@ public class UserOptions extends JFrame {
         lblExit.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
 				//Todo: Limpar sessao e voltar para tela de login
-
+				UserController userController = new UserController();
+				userController.logout();
                 dispose(); // Fecha a janela
+				LoginView loginView = new LoginView();
+				loginView.setVisible(true);
             }
         });
 
