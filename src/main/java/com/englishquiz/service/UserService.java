@@ -74,9 +74,11 @@ public class UserService {
     }
 
     //* Completa o registramento
-    public void completarRegistro(User newUser) {
+    public boolean completarRegistro(User newUser) {
 
         newUser.setType(User.Type.USER);
         userDAO.save(newUser);
+        
+        return true;
     }
 }

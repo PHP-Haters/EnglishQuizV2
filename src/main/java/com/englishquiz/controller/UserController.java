@@ -41,11 +41,10 @@ public class UserController implements Controller {
         if(usuarioEncontrado == null) {
             return false;
         }
-        return inputDaSenhaLogin(usuarioEncontrado, password);
+        return validarSenha(usuarioEncontrado, password);
     }
 
-    private boolean inputDaSenhaLogin(User usuarioEncontrado, String password) {
-
+    private boolean validarSenha(User usuarioEncontrado, String password) {
         if(userService.verificacaoDeSenha(usuarioEncontrado, password)) {
             Session.getInstance().setLoggedUser(usuarioEncontrado);
 
@@ -58,66 +57,44 @@ public class UserController implements Controller {
         }
         else {
             return false;
-        }
-        
+        }    
     }
+
 
     //* Funções de registro
-    private void registerEmailInput() {
-        String newUserEmail = emailInput();
-        if(retornarPaginaLogin(newUserEmail))
-            return;
-
-        User usuarioEncontrado = userService.verificacaoDeEmail(newUserEmail);
-        if(usuarioEncontrado != null) {
-            //loginText.jaExiste();
-            registerEmailInput();
-            
-            return;
-        }
-
-        boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(newUserEmail);
-        if(!IsEmailCorrect) {
-            //loginText.mensagemDeErroGenerico("O email deve conter @");
-            registerEmailInput();
-            
-            return;
-        }
-        User newUser = new User(newUserEmail, "");
-        registerSenhaInput(newUser);
+    public boolean register(String email, String password) {
+        return registrarEmail(email, password);
     }
-    private void registerSenhaInput(User newUser) {
-        //loginText.senhaPrecisa();
-        String newPassword = senhaInput();
 
+    
+    private boolean registrarEmail(String email, String password) {
+        User usuarioEncontrado = userService.verificacaoDeEmail(email);
+        if(usuarioEncontrado != null) {
+            return false;
+        }
+            
+        boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(email);
+        if(!IsEmailCorrect) {
+            return false;
+        }
+
+        User newUser = new User(email, "");
+        return registrarSenha(newUser, password);
+    }
+    private boolean registrarSenha(User newUser, String newPassword) {
         boolean IsPasswordCorrect = userService.confirmarSeSenhaEstaCorreto(newPassword);
         if(!IsPasswordCorrect) {
-            //loginText.mensagemDeErroGenerico("Senha invalida");
-            registerSenhaInput(newUser);
-            
-            return;
+            return false;
         }
-
+        
         newUser.setPassword(newPassword);
-
-        userService.completarRegistro(newUser);
-        //comecarLoginOuRegister();
+        return userService.completarRegistro(newUser);
     }
 
-    private boolean retornarPaginaLogin(String newInput) {
-        if(newInput.compareTo("0") == 0) {
-            //loginText.limparConsole();
-            //comecarLoginOuRegister();
-            
-            return true;
-        }
-        return false;
-    }
 
-    //*Funções do sistema interno
+    //! tem que apagar eventualmente
     protected void iniciarSistemaInterno() {
         profileScreen.telaDoUsuario();
-        setarEscolhaNumerica();
         switch (escolhaDeUsuario) {
             case 1:
                 listarUsuarioAtual();
@@ -150,7 +127,7 @@ public class UserController implements Controller {
         profileScreen.mostrarUsuario();
 
         System.out.println("\nDigite zero(0) para voltar...");
-        setarEscolhaNumerica();
+
         if (escolhaDeUsuario == 0) {
             profileScreen.limparConsole();
             iniciarSistemaInterno();
@@ -267,22 +244,5 @@ public class UserController implements Controller {
         Session.getInstance().setLoggedUser(null);
         profileScreen.limparConsole();
         //comecarLoginOuRegister();
-    }
-
-    //* funções pequenas de suporte
-    protected void setarEscolhaNumerica() {
-        try {
-            this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());
-        } catch (Exception e) {
-            //loginText.mensagemDeErroGenerico("Escolha uma opção valida");
-        }
-    }
-    protected String emailInput() {
-        //loginText.pedirEmail();
-        return scanner.nextLine();
-    }
-    protected String senhaInput() {
-        //loginText.pedirSenha();
-        return scanner.nextLine();
     }
 }

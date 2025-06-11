@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.GroupLayout.*;
 import java.awt.*;
 import com.englishquiz.controller.UserController;
-import com.englishquiz.view.MostrarUserView;
+import com.englishquiz.view.UserOptions;
 
 public class LoginView extends JFrame {
     
@@ -39,7 +39,7 @@ public class LoginView extends JFrame {
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 
-		JLabel warningLabel = new JLabel("");
+		JLabel warningLabel = new JLabel("Na hora de registrar, a senha precisa de 8 letras e 2 números.");
 		warningLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 16));
 		
 		JButton login = new JButton("Login");
@@ -50,8 +50,8 @@ public class LoginView extends JFrame {
 				if(booli == true) {
 					//todo CHAMAR PAGINA HOME
 					dispose();
-					MostrarUserView mostrarUserView = new MostrarUserView();
-					mostrarUserView.setVisible(true);
+					UserOptions userOptions = new UserOptions();
+					userOptions.setVisible(true);
 				}
 				else {
 					warningLabel.setText("Falha no login, tente novamente");
@@ -62,7 +62,13 @@ public class LoginView extends JFrame {
 		registerButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				boolean booli = userController.register(email.getText(), passwordInput.getText());
+				if(booli == true) {
+					warningLabel.setText("Registramento completado! Faça o Login!");
+				}
+				else {
+					warningLabel.setText("Usuário já existe.");
+				}
 			}
 		});
 		
