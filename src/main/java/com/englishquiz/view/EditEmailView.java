@@ -6,8 +6,8 @@ import java.awt.*;
 import javax.swing.GroupLayout.*;
 import javax.swing.LayoutStyle.*;
 
-public class EditEmailView {
-    public class EditEmail extends JFrame {
+
+public class EditEmailView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -15,7 +15,7 @@ public class EditEmailView {
 	private JPasswordField passwordField;
 	private JTextField textField;
 
-	public EditEmail() {
+	public EditEmailView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -24,15 +24,15 @@ public class EditEmailView {
 
 		setContentPane(contentPane);
 		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
-		
+
 		passwordField = new JPasswordField();
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Digite um novo email:");
 		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
-		
+
 		textField = new JTextField();
 		textField.setColumns(10);
-		
+
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.setBackground(new Color(241, 96, 80));
 		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
@@ -65,4 +65,4 @@ public class EditEmailView {
 		contentPane.setLayout(gl_contentPane);
 	}
 }
-}
+

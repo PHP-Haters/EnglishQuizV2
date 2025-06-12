@@ -29,7 +29,9 @@ public class UserOptions extends JFrame {
 
         lblUserInfo.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Informações do usuário selecionado");
+                dispose();
+                PerfilOption perfilOptions = new PerfilOption();
+                perfilOptions.setVisible(true);
             }
         });
 

@@ -7,8 +7,6 @@ import java.awt.event.*;
 
 import javax.swing.GroupLayout.*;
 
-public class PerfilOptions {
-
 public class PerfilOption extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -22,31 +20,45 @@ public class PerfilOption extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
-		JButton btnNewButton_3 = new JButton("Mostrar usuário");
-		btnNewButton_3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		btnNewButton_3.addActionListener(new ActionListener() {
+
+		JButton btnUserInfos = new JButton("Mostrar usuário");
+		btnUserInfos.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnUserInfos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MostrarUserView userInfos = new MostrarUserView();
+				userInfos.setVisible(true);
 			}
 		});
-		
-		JButton btnNewButton_6 = new JButton("Editar email");
-		btnNewButton_6.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		btnNewButton_6.setForeground(new Color(0, 0, 0));
-		
+
+		JButton btnEditarEmail = new JButton("Editar email");
+		btnEditarEmail.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnEditarEmail.setForeground(new Color(0, 0, 0));
+		btnEditarEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				EditEmailView editEmailView = new EditEmailView();
+				editEmailView.setVisible(true);
+			}
+		});
+
 		JButton btnNewButton_5 = new JButton("Editar senha");
 		btnNewButton_5.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
+
 		JButton btnNewButton_2 = new JButton("Deletar usuário");
 		btnNewButton_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
-		JButton btnNewButton_4 = new JButton("Deslogar");
-		btnNewButton_4.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
-		JButton btnNewButton_1 = new JButton("Voltar");
-		btnNewButton_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
-		JLabel lblNewLabel = new JLabel("English Quiz");
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				UserOptions initalScreen = new UserOptions();
+				initalScreen.setVisible(true);
+			}
+		});
+
+		JLabel lblNewLabel = new JLabel("Usuário");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 20));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -56,17 +68,15 @@ public class PerfilOption extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton_3)
+							.addComponent(btnUserInfos)
 							.addGap(40)
-							.addComponent(btnNewButton_6, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
+							.addComponent(btnEditarEmail, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnNewButton_5, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 							.addGap(40)
 							.addComponent(btnNewButton_2))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton_4, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
-							.addGap(40)
-							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
 					.addGap(61))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -76,18 +86,16 @@ public class PerfilOption extends JFrame {
 					.addComponent(lblNewLabel)
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_3)
-						.addComponent(btnNewButton_6))
+						.addComponent(btnUserInfos)
+						.addComponent(btnEditarEmail))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton_5)
 						.addComponent(btnNewButton_2))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_4)
-						.addComponent(btnNewButton_1)))
+						.addComponent(btnVoltar)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-}
 }

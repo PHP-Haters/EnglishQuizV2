@@ -3,9 +3,12 @@ package com.englishquiz.view;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import javax.swing.GroupLayout.*;
 
-    public class MostrarUserView extends JFrame {
+public class MostrarUserView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -18,34 +21,43 @@ import javax.swing.GroupLayout.*;
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
+
 		JLabel lblNewLabel = new JLabel("Usuário atual");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 22));
-		
+
 		JLabel lblNewLabel_1 = new JLabel("ID:");
 		lblNewLabel_1.setForeground(new Color(244, 94, 72));
 		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Email: ");
 		lblNewLabel_2.setForeground(new Color(244, 94, 72));
 		lblNewLabel_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
-		
+
 		JLabel lblNewLabel_3 = new JLabel("Senha:");
 		lblNewLabel_3.setForeground(new Color(244, 94, 72));
 		lblNewLabel_3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
-		
+
 		JLabel lblNewLabel_4 = new JLabel("1");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
+
 		JLabel lblNewLabel_5 = new JLabel("admin@gmail.com");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
+
 		JLabel lblNewLabel_6 = new JLabel("admin");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 12));
-		
-		JButton btnNewButton = new JButton("Voltar");
-		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		btnNewButton.setBackground(new Color(245, 101, 80));
+
+		JButton btnvoltar = new JButton("Voltar");
+		btnvoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		btnvoltar.setBackground(new Color(245, 101, 80));
+		btnvoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				PerfilOption perfilOptions = new PerfilOption();
+                perfilOptions.setVisible(true);
+			}
+		});
+
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -69,7 +81,7 @@ import javax.swing.GroupLayout.*;
 					.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(182)
-					.addComponent(btnNewButton))
+					.addComponent(btnvoltar))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -95,7 +107,7 @@ import javax.swing.GroupLayout.*;
 							.addGap(3)
 							.addComponent(lblNewLabel_6)))
 					.addGap(25)
-					.addComponent(btnNewButton))
+					.addComponent(btnvoltar))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
