@@ -2,6 +2,9 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import com.englishquiz.controller.UserController;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -36,6 +39,22 @@ public class EditPasswordView extends JFrame {
 		btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.setBackground(new Color(241, 104, 84));
 		btnConfirmar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UserController userController = new UserController();
+				boolean booli = userController.editarSenha(passwordField.getPassword(), passwordField_1.getPassword());
+				if(booli == true) {
+					dispose();
+					MostrarUserView mostrarUserView = new MostrarUserView();
+					mostrarUserView.setVisible(true);
+				}
+				else{
+						//todo PRECISAMOS DE MENSAGEM DE AVISO AQUI PARA AVISAR QUE ELE FEZ ALGO ERRAOD PORRA
+				}
+			}
+		});
+
+
 
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.setBackground(new Color(241, 104, 84));

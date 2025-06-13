@@ -1,6 +1,7 @@
 package com.englishquiz.service;
 
 import com.englishquiz.model.User;
+import com.englishquiz.server.Session;
 import com.englishquiz.dao.UserDAO;
 
 public class UserService {
@@ -80,5 +81,27 @@ public class UserService {
         userDAO.save(newUser);
         
         return true;
+    }
+
+    public boolean pedirSenha(String password) {
+        if(password.compareTo(Session.getInstance().getLoggedUser().getPassword()) == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void mudarEmail(String email) {
+        User user = Session.getInstance().getLoggedUser();
+        user.setEmail(email);
+         Session.getInstance().setLoggedUser(user);
+        userDAO.update(user);
+    }
+    public void mudarSenha(String senha) {
+        User user = Session.getInstance().getLoggedUser();
+        user.setPassword(senha);
+        Session.getInstance().setLoggedUser(user);
+        userDAO.update(user);
     }
 }

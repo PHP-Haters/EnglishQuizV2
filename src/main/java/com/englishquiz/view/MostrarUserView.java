@@ -2,6 +2,9 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import com.englishquiz.server.Session;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -36,13 +39,13 @@ public class MostrarUserView extends JFrame {
 		lblNewLabel_3.setForeground(new Color(244, 94, 72));
 		lblNewLabel_3.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
 
-		JLabel lblNewLabel_4 = new JLabel("1");
+		JLabel lblNewLabel_4 = new JLabel(String.valueOf(Session.getInstance().getLoggedUser().getId()));
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JLabel lblNewLabel_5 = new JLabel("admin@gmail.com");
+		JLabel lblNewLabel_5 = new JLabel(Session.getInstance().getLoggedUser().getEmail());
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 12));
 
-		JLabel lblNewLabel_6 = new JLabel("admin");
+		JLabel lblNewLabel_6 = new JLabel(Session.getInstance().getLoggedUser().getPassword());
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 
 		JButton btnvoltar = new JButton("Voltar");
