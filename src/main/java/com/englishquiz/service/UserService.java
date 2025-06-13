@@ -104,4 +104,8 @@ public class UserService {
         Session.getInstance().setLoggedUser(user);
         userDAO.update(user);
     }
+
+    public void deletarUsuario() {
+        userDAO.delete(Session.getInstance().getLoggedUser());
+    }
 }

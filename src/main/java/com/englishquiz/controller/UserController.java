@@ -104,6 +104,11 @@ public class UserController{
         else
             return false;
     }
+    
+    public void deletarUsuario() {
+        userService.deletarUsuario();
+        finalizarSessao();
+    }
 
 
     public void logout(){

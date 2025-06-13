@@ -2,6 +2,9 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import com.englishquiz.controller.UserController;
+
 import java.awt.*;
 import java.awt.event.*;
 

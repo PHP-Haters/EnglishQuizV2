@@ -2,6 +2,9 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import com.englishquiz.controller.UserController;
+
 import java.awt.*;
 import javax.swing.GroupLayout.*;
 import java.awt.event.*;
@@ -32,12 +35,11 @@ public class DeleteUserView extends JFrame {
 		btnConfirmar.setForeground(new Color(0, 0, 0));
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				/*
-					Aqui uma função deleteUser deve ser chamada
-					essa função deve ser escrita no userController.
-					Caso a exclusão do usuário seja bem sucedida,
-					basta fechar essa janela e voltar para a janela anterior
-				*/
+				UserController userController = new UserController();
+				userController.deletarUsuario();
+				dispose();
+				LoginView loginView = new LoginView();
+				loginView.setVisible(true);
 			}
 		});
 
