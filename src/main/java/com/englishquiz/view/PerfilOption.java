@@ -42,8 +42,15 @@ public class PerfilOption extends JFrame {
 			}
 		});
 
-		JButton btnNewButton_5 = new JButton("Editar senha");
-		btnNewButton_5.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		JButton btnEditarSenha = new JButton("Editar senha");
+		btnEditarSenha.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnEditarSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				EditPasswordView editPasswordView = new EditPasswordView();
+				editPasswordView.setVisible(true);
+			}
+		});
 
 		JButton btnNewButton_2 = new JButton("Deletar usuário");
 		btnNewButton_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
@@ -72,7 +79,7 @@ public class PerfilOption extends JFrame {
 							.addGap(40)
 							.addComponent(btnEditarEmail, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnNewButton_5, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnEditarSenha, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 							.addGap(40)
 							.addComponent(btnNewButton_2))
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -90,7 +97,7 @@ public class PerfilOption extends JFrame {
 						.addComponent(btnEditarEmail))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton_5)
+						.addComponent(btnEditarSenha)
 						.addComponent(btnNewButton_2))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
