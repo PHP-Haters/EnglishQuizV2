@@ -1,6 +1,5 @@
 package com.englishquiz;
 
-import com.englishquiz.controller.UserController;
 import com.englishquiz.service.AnswerService;
 import com.englishquiz.service.LevelService;
 import com.englishquiz.service.QuestionService;
@@ -16,7 +15,7 @@ public class Main {
 
         UserService userService = new UserService();
         userService.criarUserPadrao();
-        
+
         LevelService levelService = new LevelService();
         levelService.inicializarNiveisPadrao();
 
@@ -25,8 +24,5 @@ public class Main {
 
         AnswerService answerService = new AnswerService();
         answerService.criarRespostasPadrao();
-
-        UserController userController = new UserController();
-        userController.abrirView();
     }
 }
