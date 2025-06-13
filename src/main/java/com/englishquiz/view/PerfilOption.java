@@ -52,8 +52,15 @@ public class PerfilOption extends JFrame {
 			}
 		});
 
-		JButton btnNewButton_2 = new JButton("Deletar usuário");
-		btnNewButton_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		JButton btnDelUser = new JButton("Deletar usuário");
+		btnDelUser.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnDelUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				DeleteUserView delUserView = new DeleteUserView();
+				delUserView.setVisible(true);
+			}
+		});
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
@@ -81,7 +88,7 @@ public class PerfilOption extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnEditarSenha, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
 							.addGap(40)
-							.addComponent(btnNewButton_2))
+							.addComponent(btnDelUser))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)))
 					.addGap(61))
@@ -98,7 +105,7 @@ public class PerfilOption extends JFrame {
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnEditarSenha)
-						.addComponent(btnNewButton_2))
+						.addComponent(btnDelUser))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnVoltar)))

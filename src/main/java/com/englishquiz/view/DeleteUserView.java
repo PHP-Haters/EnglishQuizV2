@@ -4,14 +4,14 @@ import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
 import javax.swing.GroupLayout.*;
+import java.awt.event.*;
 
-public class DeleteUserView {
-    public class DeleteUser extends JFrame {
+public class DeleteUserView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public DeleteUser() {
+	public DeleteUserView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -19,21 +19,29 @@ public class DeleteUserView {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Tem certeza que deseja deletar o usuário permanentemente?");
 		lblNewLabel_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
+
 		JLabel lblNewLabel = new JLabel("Ao deletar o usuário atual você será deslogado do sistema.");
 		lblNewLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		
-		JButton btnNewButton = new JButton("Sim");
-		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		btnNewButton.setBackground(new Color(239, 101, 86));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		
-		JButton btnNewButton_1 = new JButton("Não");
-		btnNewButton_1.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
-		btnNewButton_1.setBackground(new Color(239, 101, 86));
+
+		JButton btnConfirmar = new JButton("Sim");
+		btnConfirmar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		btnConfirmar.setBackground(new Color(239, 101, 86));
+		btnConfirmar.setForeground(new Color(0, 0, 0));
+
+		JButton btnVoltar = new JButton("Não");
+		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		btnVoltar.setBackground(new Color(239, 101, 86));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				PerfilOption perfilOptions = new PerfilOption();
+                perfilOptions.setVisible(true);
+			}
+		});
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -45,9 +53,9 @@ public class DeleteUserView {
 					.addComponent(lblNewLabel_1))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(85)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnConfirmar, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
 					.addGap(53)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+					.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -58,12 +66,10 @@ public class DeleteUserView {
 					.addComponent(lblNewLabel_1)
 					.addGap(64)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnNewButton)
-						.addComponent(btnNewButton_1))
+						.addComponent(btnConfirmar)
+						.addComponent(btnVoltar))
 					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
-}
 }
