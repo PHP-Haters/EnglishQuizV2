@@ -30,6 +30,16 @@ public class DeleteUserView extends JFrame {
 		btnConfirmar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
 		btnConfirmar.setBackground(new Color(239, 101, 86));
 		btnConfirmar.setForeground(new Color(0, 0, 0));
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				/*
+					Aqui uma função deleteUser deve ser chamada
+					essa função deve ser escrita no userController.
+					Caso a exclusão do usuário seja bem sucedida,
+					basta fechar essa janela e voltar para a janela anterior
+				*/
+			}
+		});
 
 		JButton btnVoltar = new JButton("Não");
 		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
