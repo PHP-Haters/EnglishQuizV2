@@ -5,7 +5,7 @@ import javax.swing.border.*;
 import java.awt.*;
 import javax.swing.GroupLayout.*;
 import javax.swing.LayoutStyle.*;
-
+import java.awt.event.*;
 
 public class EditEmailView extends JFrame {
 
@@ -33,10 +33,23 @@ public class EditEmailView extends JFrame {
 		textField = new JTextField();
 		textField.setColumns(10);
 
-		JButton btnNewButton = new JButton("Confirmar");
-		btnNewButton.setBackground(new Color(241, 96, 80));
-		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		JButton btnConfirmar = new JButton("Confirmar");
+		btnConfirmar.setBackground(new Color(241, 96, 80));
+		btnConfirmar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setBackground(new Color(241, 96, 80));
+		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				PerfilOption perfilOptions = new PerfilOption();
+                perfilOptions.setVisible(true);
+			}
+		});
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		// GRUPO HORIZONTAL
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -44,10 +57,18 @@ public class EditEmailView extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel)
 						.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnConfirmar)
+							.addGap(18) // Espaço entre os botões
+							.addComponent(btnVoltar)
+						)
+					)
+				)
 		);
+
+		// GRUPO VERTICAL
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
@@ -60,7 +81,11 @@ public class EditEmailView extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(47)
-					.addComponent(btnNewButton))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnConfirmar)
+						.addComponent(btnVoltar)
+					)
+				)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
