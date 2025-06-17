@@ -3,82 +3,82 @@ package com.englishquiz.view;
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
 import java.awt.*;
 import java.awt.event.*;
 
 public class LevelsView extends JFrame {
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    public void startView() {
+        createView();
+        setVisible(true);
+    }
 
-	public void startView() {
-		createView();
-		setVisible(true);
-	}
+    private void createView() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 350);
 
-	private void createView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+        contentPane = new JPanel();
+        contentPane.setBackground(Color.WHITE);
+        setContentPane(contentPane);
 
-		setContentPane(contentPane);
-		
-		JButton btnNewButton_2 = new JButton("Primeiro Nível");
-		btnNewButton_2.setBackground(new Color(245, 115, 82));
-		btnNewButton_2.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		
-		JButton btnNewButton_1 = new JButton("Segundo Nível");
-		btnNewButton_1.setBackground(new Color(248, 128, 92));
-		btnNewButton_1.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		
-		JButton btnNewButton = new JButton("Terceiro Nível");
-		btnNewButton.setBackground(new Color(248, 128, 92));
-		btnNewButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-		
-		JLabel lblNewLabel = new JLabel("English Quiz");
-		lblNewLabel.setBackground(new Color(248, 128, 92));
-		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
+        JLabel titleLabel = new JLabel("English Quiz");
+        titleLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				dispose();
-				MainMenuView initalScreen = new MainMenuView();
-				initalScreen.setVisible(true);
-			}
-		});
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(26)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addContainerGap())
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-								.addComponent(btnNewButton_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-								.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE).addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
-							.addGap(27))))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addGap(18)
-					.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		contentPane.setLayout(gl_contentPane);
-	}
+        JButton firstLevelButton = new JButton("Primeiro Nível");
+        firstLevelButton.setBackground(new Color(245, 115, 82));
+        firstLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+
+        JButton secondLevelButton = new JButton("Segundo Nível");
+        secondLevelButton.setBackground(new Color(248, 128, 92));
+        secondLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+
+        JButton thirdLevelButton = new JButton("Terceiro Nível");
+        thirdLevelButton.setBackground(new Color(248, 128, 92));
+        thirdLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+
+        JButton backButton = new JButton("Voltar");
+        backButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                MainMenuView initialScreen = new MainMenuView();
+                initialScreen.setVisible(true);
+            }
+        });
+
+        // Layout Configuration
+        GroupLayout layout = new GroupLayout(contentPane);
+        contentPane.setLayout(layout);
+
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(26)
+                    .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                        .addComponent(titleLabel)
+                        .addComponent(firstLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addComponent(secondLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addComponent(thirdLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                    .addGap(27))
+        );
+
+        layout.setVerticalGroup(
+            layout.createParallelGroup(Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(titleLabel)
+                    .addGap(18)
+                    .addComponent(firstLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18)
+                    .addComponent(secondLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18)
+                    .addComponent(thirdLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18)
+                    .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(15, Short.MAX_VALUE))
+        );
+    }
 }
