@@ -3,19 +3,17 @@ package com.englishquiz.view;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import com.englishquiz.controller.UserController;
-
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.GroupLayout.*;
 
-public class PerfilOption extends JFrame {
+public class PerfilOptionView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public PerfilOption() {
+	public PerfilOptionView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,7 +68,7 @@ public class PerfilOption extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				dispose();
-				UserOptions initalScreen = new UserOptions();
+				MainMenuView initalScreen = new MainMenuView();
 				initalScreen.setVisible(true);
 			}
 		});

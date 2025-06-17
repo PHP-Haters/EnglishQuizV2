@@ -49,7 +49,7 @@ public class LoginView extends JFrame {
 				if(booli == true) {
 					//todo CHAMAR PAGINA HOME
 					dispose();
-					UserOptions userOptions = new UserOptions();
+					MainMenuView userOptions = new MainMenuView();
 					userOptions.setVisible(true);
 				}
 				else {

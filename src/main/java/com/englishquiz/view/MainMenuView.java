@@ -8,11 +8,11 @@ import java.awt.event.MouseEvent;
 import com.englishquiz.controller.UserController;
 
 
-public class UserOptions extends JFrame {
+public class MainMenuView extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
 
-    public UserOptions() {
+    public MainMenuView() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 499, 306);
         contentPane = new JPanel();
@@ -30,14 +30,16 @@ public class UserOptions extends JFrame {
         lblUserInfo.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 dispose();
-                PerfilOption perfilOptions = new PerfilOption();
+                PerfilOptionView perfilOptions = new PerfilOptionView();
                 perfilOptions.setVisible(true);
             }
         });
 
         lblLevels.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Níveis selecionado");
+                dispose();
+                LevelsView levelsView = new LevelsView();
+                levelsView.startView();
             }
         });
 

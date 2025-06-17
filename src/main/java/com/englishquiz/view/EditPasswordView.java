@@ -62,7 +62,7 @@ public class EditPasswordView extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				PerfilOption perfilOptions = new PerfilOption();
+				PerfilOptionView perfilOptions = new PerfilOptionView();
 				perfilOptions.setVisible(true);
 			}
 		});

@@ -5,15 +5,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.*;
+import java.awt.event.*;
 
-public class LevelsView {
-
-public class Levels extends JFrame {
+public class LevelsView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public Levels() {
+	public void startView() {
+		createView();
+		setVisible(true);
+	}
+
+	private void createView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -36,6 +40,16 @@ public class Levels extends JFrame {
 		JLabel lblNewLabel = new JLabel("English Quiz");
 		lblNewLabel.setBackground(new Color(248, 128, 92));
 		lblNewLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
+
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				dispose();
+				MainMenuView initalScreen = new MainMenuView();
+				initalScreen.setVisible(true);
+			}
+		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -49,7 +63,7 @@ public class Levels extends JFrame {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
 								.addComponent(btnNewButton_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-								.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+								.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE).addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE))
 							.addGap(27))))
 		);
 		gl_contentPane.setVerticalGroup(
@@ -67,7 +81,4 @@ public class Levels extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
-}
-
 }
