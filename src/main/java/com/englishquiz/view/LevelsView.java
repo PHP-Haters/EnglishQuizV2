@@ -34,18 +34,6 @@ public class LevelsView extends JFrame {
         JLabel titleLabel = new JLabel("English Quiz");
         titleLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 18));
 
-        JButton firstLevelButton = new JButton("Primeiro Nível");
-        firstLevelButton.setBackground(new Color(245, 115, 82));
-        firstLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-
-        JButton secondLevelButton = new JButton("Segundo Nível");
-        secondLevelButton.setBackground(new Color(248, 128, 92));
-        secondLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-
-        JButton thirdLevelButton = new JButton("Terceiro Nível");
-        thirdLevelButton.setBackground(new Color(248, 128, 92));
-        thirdLevelButton.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
-
         JButton backButton = new JButton("Voltar");
         backButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
         backButton.addActionListener(new ActionListener() {
@@ -56,37 +44,67 @@ public class LevelsView extends JFrame {
             }
         });
 
-        // Layout Configuration
+        // Criar os botões dinamicamente com base nos levels
+        java.util.List<JButton> levelButtons = new java.util.ArrayList<>();
+
+        for (Level level : levels) {
+            JButton btn = new JButton(level.getNomeLevel()); // assumindo que Level tem getNomeLevel()
+            btn.setBackground(new Color(248, 128, 92));
+            btn.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
+            btn.setPreferredSize(new Dimension(373, 50));
+
+            // Aqui você pode adicionar o ActionListener para cada botão, se quiser
+            btn.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    // Código para abrir o nível selecionado
+                    System.out.println("Selecionou nível: " + level.getNomeLevel());
+                    // Exemplo:
+                    // QuizView quizView = new QuizView(level);
+                    // quizView.start();
+                    // dispose();
+                }
+            });
+
+            levelButtons.add(btn);
+        }
+
         GroupLayout layout = new GroupLayout(contentPane);
         contentPane.setLayout(layout);
 
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(26)
-                    .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                        .addComponent(titleLabel)
-                        .addComponent(firstLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                        .addComponent(secondLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                        .addComponent(thirdLevelButton, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                    .addGap(27))
-        );
+        // Criando grupos horizontais
+        GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup()
+            .addGap(26);
 
-        layout.setVerticalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(titleLabel)
-                    .addGap(18)
-                    .addComponent(firstLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addComponent(secondLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addComponent(thirdLevelButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18)
-                    .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(15, Short.MAX_VALUE))
-        );
+        GroupLayout.ParallelGroup hParallelGroup = layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(titleLabel);
+
+        for (JButton btn : levelButtons) {
+            hParallelGroup.addComponent(btn, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE);
+        }
+        hParallelGroup.addComponent(backButton, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE);
+
+        hGroup.addGroup(hParallelGroup);
+        hGroup.addGap(27);
+
+        layout.setHorizontalGroup(hGroup);
+
+        // Criando grupos verticais
+        GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(titleLabel)
+            .addGap(18);
+
+        for (int i = 0; i < levelButtons.size(); i++) {
+            vGroup.addComponent(levelButtons.get(i), GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE);
+            if (i < levelButtons.size() - 1) {
+                vGroup.addGap(18);
+            }
+        }
+        vGroup.addGap(18);
+        vGroup.addComponent(backButton, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(15, Short.MAX_VALUE);
+
+        layout.setVerticalGroup(vGroup);
     }
+
 }
