@@ -58,10 +58,9 @@ public class LevelsView extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     // Código para abrir o nível selecionado
                     System.out.println("Selecionou nível: " + level.getNomeLevel());
-                    // Exemplo:
-                    // QuizView quizView = new QuizView(level);
-                    // quizView.start();
-                    // dispose();
+                    QuestionView questionView = new QuestionView();
+                    questionView.startView(level);;
+                    dispose();
                 }
             });
 

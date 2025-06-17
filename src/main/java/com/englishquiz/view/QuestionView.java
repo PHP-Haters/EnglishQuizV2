@@ -63,8 +63,19 @@ public class QuestionView extends JFrame {
 		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("c) am");
 		rdbtnNewRadioButton_2.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		
-		JButton btnNewButton = new JButton("Next");
-		btnNewButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		JButton btnNext = new JButton("Next");
+		btnNext.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		
+		JButton backButton = new JButton("Voltar");
+		backButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose(); // fecha a QuestionView atual
+				LevelsView levelsView = new LevelsView();
+				levelsView.startView(); // abre a tela de níveis novamente
+			}
+		});
+
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -81,8 +92,10 @@ public class QuestionView extends JFrame {
 					.addGap(27)
 					.addComponent(rdbtnNewRadioButton_2, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(280)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
+					.addGap(27)
+					.addComponent(backButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+					.addGap(200) // espaçamento entre Voltar e Next
+					.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -95,10 +108,13 @@ public class QuestionView extends JFrame {
 					.addComponent(rdbtnNewRadioButton_1)
 					.addGap(18)
 					.addComponent(rdbtnNewRadioButton_2)
-					.addGap(6)
-					.addComponent(btnNewButton))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(backButton)
+						.addComponent(btnNext)))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
 
 }
