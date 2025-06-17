@@ -2,17 +2,47 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.border.*;
+
+import com.englishquiz.model.Question;
+import com.englishquiz.controller.AnswerController;
+import com.englishquiz.controller.QuestionController;
+import com.englishquiz.model.Answer;
+import com.englishquiz.model.Level;
+
 import java.awt.*;
 import javax.swing.GroupLayout.*;
+import java.awt.event.*;
 
-public class QuestionView {
-
-public class Question extends JFrame {
+import java.util.List;
+public class QuestionView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	List<Question> questions;
+	List<Answer> answersOfQuestion;
+	int currentQuestion = 0;
 
-	public Question() {
+	public void startView(Level level) {
+		defineQuestions(level);
+	
+		createView();
+		setVisible(true);
+	}
+
+	private void defineQuestions(Level level) {
+		QuestionController questionController = new QuestionController();
+		questions = questionController.getQuestionsOfLevel(level);
+	}
+	private void defineAnswers() {
+		AnswerController answerController = new AnswerController();
+		answersOfQuestion = answerController.getAnswersOfQuestion(questions.get(currentQuestion));
+	}
+
+	private void getAnswersReady() {
+		currentQuestion = 0;
+		defineAnswers();
+	}
+	private void createView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,7 +100,5 @@ public class Question extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
-}
 
 }
