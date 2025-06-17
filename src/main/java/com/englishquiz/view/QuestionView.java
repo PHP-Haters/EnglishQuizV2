@@ -39,9 +39,13 @@ public class QuestionView extends JFrame {
 	}
 
 	private void getAnswersReady() {
+		//TODO aqui vai lidar com as respostas da pergunta atual;
+		//TODO aumentar o currentQuestion para pegar as respostas da pergunta atual e pegar a pergunta atual
+		
 		currentQuestion = 0;
 		defineAnswers();
 	}
+
 	private void createView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
