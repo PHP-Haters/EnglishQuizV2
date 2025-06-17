@@ -1,11 +1,15 @@
 package com.englishquiz.controller;
 
-// import java.util.Scanner;
-// import com.englishquiz.model.Level;
-// import com.englishquiz.view.Text;
-// import com.englishquiz.service.LevelService;
-// import com.englishquiz.view.LevelText;
+import java.util.List;
 
-public class LevelController{
+import com.englishquiz.model.Level;
+import com.englishquiz.service.LevelService;
 
+public class LevelController {
+    LevelService levelService = new LevelService();
+
+    public List<Level> getLevels() {
+        List<Level> levels = levelService.listarTodosNiveis();
+        return levels;
+    }
 }

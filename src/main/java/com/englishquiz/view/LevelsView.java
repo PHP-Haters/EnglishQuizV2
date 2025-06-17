@@ -2,15 +2,23 @@ package com.englishquiz.view;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+
+import com.englishquiz.controller.LevelController;
+
 import java.awt.*;
 import java.awt.event.*;
+
+import java.util.List;
+import com.englishquiz.model.Level;
 
 public class LevelsView extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+	List<Level> levels;
 
     public void startView() {
+		LevelController levelController = new LevelController();
+		levels = levelController.getLevels();
         createView();
         setVisible(true);
     }
