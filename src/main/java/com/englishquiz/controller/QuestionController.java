@@ -2,8 +2,6 @@ package com.englishquiz.controller;
 
 import com.englishquiz.model.Level;
 import com.englishquiz.model.Question;
-import com.englishquiz.model.Answer;
-import com.englishquiz.model.UserAnswer;
 import com.englishquiz.service.QuestionService;
 
 import java.util.List;
