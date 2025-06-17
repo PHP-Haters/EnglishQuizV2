@@ -9,6 +9,18 @@ package com.englishquiz.controller;
 // import com.englishquiz.server.Session;
 // import com.englishquiz.model.Answer;
 
+import java.util.List;
+
+import com.englishquiz.model.Question;
+import com.englishquiz.model.Answer;
+import com.englishquiz.service.AnswerService;
+
 public class AnswerController{
-    AnswerController() {}
+    
+    AnswerService answerService;
+
+    public List<Answer> getAnswersOfQuestion(Question question) {
+        answerService = new AnswerService();
+        return answerService.listarPorPergunta(question);
+    }
 }
