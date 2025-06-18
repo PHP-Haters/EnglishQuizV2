@@ -17,7 +17,8 @@ public class HibernateUtil {
                 .addAnnotatedClass(com.englishquiz.model.Level.class)
                 .addAnnotatedClass(com.englishquiz.model.Question.class)
                 .addAnnotatedClass(com.englishquiz.model.Answer.class)
-                .addAnnotatedClass(com.englishquiz.model.UserAnswer.class);
+                .addAnnotatedClass(com.englishquiz.model.UserAnswer.class)
+                .addAnnotatedClass(com.englishquiz.model.UserLevel.class);
 
             // Sobrescreve propriedades do XML com os valores do .env
             configuration.setProperty("hibernate.connection.url", dotenv.get("DB_URL"));

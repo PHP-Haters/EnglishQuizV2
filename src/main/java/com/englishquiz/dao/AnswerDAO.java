@@ -35,12 +35,4 @@ public class AnswerDAO {
                     .list();
         }
     }
-
-    public Answer findAnswerWith(String decision, Question question) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Answer where question = :question AND content LIKE '"+decision+"%'", Answer.class)
-                    .setParameter("question", question)
-                    .uniqueResult();
-        }
-    }
 }

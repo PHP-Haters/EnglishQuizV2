@@ -96,8 +96,4 @@ public class AnswerService {
     public List<Answer> listarPorPergunta(Question question) {
         return answerDAO.findByQuestion(question);
     }
-
-    public Answer encontrarRespostaCom(String escolhida, Question questao) {
-        return answerDAO.findAnswerWith(escolhida, questao);
-    }
 }

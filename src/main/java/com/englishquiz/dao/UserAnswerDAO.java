@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.englishquiz.model.Answer;
 import com.englishquiz.model.User;
 import com.englishquiz.model.UserAnswer;
 import com.englishquiz.util.HibernateUtil;
@@ -34,4 +35,16 @@ public class UserAnswerDAO {
                     .list();
         }
     }
+
+    public List<UserAnswer> findByAnswer(Answer answer, User user) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from UserAnswer ua "+
+             "WHERE ua.answer = :answer AND ua.user = :user ORDER BY ua.answer.id", UserAnswer.class)
+                    .setParameter("answer", answer)
+                    .setParameter("user", user)
+                    .list();
+        }
+    }
+
+
 }

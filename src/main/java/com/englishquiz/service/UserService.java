@@ -95,7 +95,7 @@ public class UserService {
     public void mudarEmail(String email) {
         User user = Session.getInstance().getLoggedUser();
         user.setEmail(email);
-         Session.getInstance().setLoggedUser(user);
+        Session.getInstance().setLoggedUser(user);
         userDAO.update(user);
     }
     public void mudarSenha(String senha) {

@@ -9,16 +9,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.util.List;
-import com.englishquiz.model.Level;
+import com.englishquiz.model.UserLevel;
 
 public class LevelsView extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-	List<Level> levels;
+	List<UserLevel> levels;
+
 
     public void startView() {
 		LevelController levelController = new LevelController();
 		levels = levelController.getLevels();
+
         createView();
         setVisible(true);
     }
@@ -47,9 +49,14 @@ public class LevelsView extends JFrame {
         // Criar os botões dinamicamente com base nos levels
         java.util.List<JButton> levelButtons = new java.util.ArrayList<>();
 
-        for (Level level : levels) {
-            JButton btn = new JButton(level.getNomeLevel()); // assumindo que Level tem getNomeLevel()
-            btn.setBackground(new Color(248, 128, 92));
+        for (UserLevel level : levels) {
+            JButton btn = new JButton(level.getLevel().getNomeLevel()); // assumindo que Level tem getNomeLevel()
+            if(level.getIsComplete() == true) {
+            btn.setBackground(new Color(0,255,68));
+            }
+            else {
+                btn.setBackground(new Color(248, 128, 92));
+            }
             btn.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 14));
             btn.setPreferredSize(new Dimension(373, 50));
 
@@ -57,9 +64,8 @@ public class LevelsView extends JFrame {
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     // Código para abrir o nível selecionado
-                    System.out.println("Selecionou nível: " + level.getNomeLevel());
                     QuestionView questionView = new QuestionView();
-                    questionView.startView(level);;
+                    questionView.startView(level);
                     dispose();
                 }
             });

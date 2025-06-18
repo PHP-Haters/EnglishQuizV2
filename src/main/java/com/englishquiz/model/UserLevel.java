@@ -51,11 +51,11 @@ public class UserLevel {
         this.level = level;
     }
 
-    public boolean isIs_complete() {
+    public boolean getIsComplete() {
         return is_complete;
     }
 
-    public void setIs_complete(boolean is_complete) {
+    public void setIsComplete(boolean is_complete) {
         this.is_complete = is_complete;
     }
 }
