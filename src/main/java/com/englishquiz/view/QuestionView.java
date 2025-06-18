@@ -34,7 +34,7 @@ public class QuestionView extends JFrame {
 	JRadioButton secondAnswer;
 	JRadioButton thirdAnswer;
 	ButtonGroup group;
-	
+
 	public void startView(UserLevel level) {
 		currentLevel = level;
 		defineQuestions();
@@ -51,7 +51,7 @@ public class QuestionView extends JFrame {
 		defineAnswers();
 	}
 	private void defineAnswers() {
-		
+
 		AnswerController answerController = new AnswerController();
 		answersOfQuestion = answerController.getAnswersOfQuestion(questions.get(currentQuestion));
 	}
@@ -65,11 +65,11 @@ public class QuestionView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		
+
 		questionLabel = new JLabel(questions.get(currentQuestion).getText());
 		questionLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
 		questionLabel.setName(Integer.toString(questions.get(currentQuestion).getId()));
-	
+
 		firstAnswer = new JRadioButton(answersOfQuestion.get(0).getContent());
 		firstAnswer.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		firstAnswer.setName(Integer.toString(0));
@@ -81,7 +81,7 @@ public class QuestionView extends JFrame {
 		thirdAnswer = new JRadioButton(answersOfQuestion.get(2).getContent());
 		thirdAnswer.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		thirdAnswer.setName(Integer.toString(2));
-		
+
 		group = new ButtonGroup();
         group.add(firstAnswer);
         group.add(secondAnswer);
@@ -91,31 +91,48 @@ public class QuestionView extends JFrame {
 		btnNext.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Verifica se o usuário selecionou alguma opção
+				if (group.getSelection() == null) {
+					JOptionPane.showMessageDialog(
+						QuestionView.this,
+						"Você precisa selecionar uma resposta antes de continuar.",
+						"Nenhuma resposta selecionada",
+						JOptionPane.WARNING_MESSAGE
+					);
+					return; // impede o avanço
+				}
+
 				createUserAnswer();
-				
 				currentQuestion++;
-				if(currentQuestion == (quantityOfQuestions-1)){
+
+				if (currentQuestion == quantityOfQuestions - 1) {
 					btnNext.setText("Send");
 
-					//todo COLOCAR AQUI AVISO DE "CERTEZA QUE QUER ENVIAR? NAO VAI PODER MUDAR DEPOIS"
-					createLevelUser();
+					Object[] options = {"Enviar respostas", "Cancelar"};
+					int choice = JOptionPane.showOptionDialog(
+						QuestionView.this,
+						"Tem certeza que deseja enviar suas respostas?\nVocê não poderá alterá-las depois.",
+						"Confirmar envio",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.QUESTION_MESSAGE,
+						null,
+						options,
+						options[0]
+					);
 
-				}	
-
-				if(currentQuestion < quantityOfQuestions) {
+					if (choice == JOptionPane.YES_OPTION) {
+						createLevelUser();
+						closeQuestions(); // Vai para LevelsView
+					} else {
+						currentQuestion--; // Fica na mesma pergunta
+					}
+				} else if (currentQuestion < quantityOfQuestions) {
 					setQuestionAndAnswers();
 					findIfAnswerWasAnswered();
 				}
-				else {
-					if(answeredQuestions.containsAll(questions)) {
-						closeQuestions();
-					} 
-					else {
-						currentQuestion--;
-					}
-				}
 			}
 		});
+
 
 		JButton backButton = new JButton("Voltar");
 		backButton.setFont(new Font("Yu Gothic Medium", Font.BOLD, 12));
@@ -180,11 +197,11 @@ public class QuestionView extends JFrame {
 		firstAnswer.setText(answersOfQuestion.get(0).getContent());
 		secondAnswer.setText(answersOfQuestion.get(1).getContent());
 		thirdAnswer.setText(answersOfQuestion.get(2).getContent());
-		
+
 	}
 
 	private void closeQuestions() {
-		dispose(); 
+		dispose();
 		LevelsView levelsView = new LevelsView();
 		levelsView.startView();
 	}
@@ -192,7 +209,7 @@ public class QuestionView extends JFrame {
 	public int getSelectedButtonText() {
         for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
-			
+
             if (button.isSelected()) {
 				int foo = Integer.parseInt(button.getName());
 				return foo;
