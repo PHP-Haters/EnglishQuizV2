@@ -3,7 +3,6 @@ package com.englishquiz.service;
 import com.englishquiz.model.Level;
 import com.englishquiz.model.User;
 import com.englishquiz.model.UserLevel;
-import com.englishquiz.server.Session;
 
 import java.util.List;
 
