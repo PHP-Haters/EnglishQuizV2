@@ -104,9 +104,11 @@ public class QuestionView extends JFrame {
 
 				createUserAnswer();
 				currentQuestion++;
-
-				if (currentQuestion == quantityOfQuestions - 1) {
+				if (currentQuestion == quantityOfQuestions-1) {
 					btnNext.setText("Send");
+				}
+				if (currentQuestion == quantityOfQuestions) {
+					
 
 					Object[] options = {"Enviar respostas", "Cancelar"};
 					int choice = JOptionPane.showOptionDialog(
@@ -221,6 +223,7 @@ public class QuestionView extends JFrame {
 	private void createUserAnswer() {
 		int selectedAnswer = getSelectedButtonText();
 		if(selectedAnswer != 5 && !answeredQuestions.contains(questions.get(currentQuestion))) {
+			System.err.println("penissss");
 			AnswerController answerController = new AnswerController();
 			answerController.setUserAnswer(answersOfQuestion.get(selectedAnswer));
 			answeredQuestions.add(questions.get(currentQuestion));
@@ -260,7 +263,10 @@ public class QuestionView extends JFrame {
 	}
 
 	private void createLevelUser() {
+		System.err.println(answeredQuestions.size());
+		System.err.println(questions.size());
 		if(answeredQuestions.size() == questions.size()) {
+			
 			LevelController levelController = new LevelController();
 			levelController.completeUserLevel(currentLevel);
 		}
