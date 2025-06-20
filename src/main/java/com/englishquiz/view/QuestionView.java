@@ -73,14 +73,17 @@ public class QuestionView extends JFrame {
 		firstAnswer = new JRadioButton(answersOfQuestion.get(0).getContent());
 		firstAnswer.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		firstAnswer.setName(Integer.toString(0));
+		firstAnswer.setBackground(new Color(211, 211, 211));
 
 		secondAnswer = new JRadioButton(answersOfQuestion.get(1).getContent());
 		secondAnswer.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		secondAnswer.setName(Integer.toString(1));
+		secondAnswer.setBackground(new Color(211, 211, 211));
 
 		thirdAnswer = new JRadioButton(answersOfQuestion.get(2).getContent());
 		thirdAnswer.setFont(new Font("Yu Gothic Medium", Font.BOLD, 14));
 		thirdAnswer.setName(Integer.toString(2));
+		thirdAnswer.setBackground(new Color(211, 211, 211));
 
 		group = new ButtonGroup();
         group.add(firstAnswer);
@@ -107,7 +110,7 @@ public class QuestionView extends JFrame {
 				if (currentQuestion == quantityOfQuestions-1) {
 					btnNext.setText("Send");
 				}
-				if (currentQuestion == quantityOfQuestions) {
+				if (currentQuestion == quantityOfQuestions && currentLevel.getIsComplete() != true) {
 					
 
 					Object[] options = {"Enviar respostas", "Cancelar"};
@@ -197,8 +200,11 @@ public class QuestionView extends JFrame {
 		group.clearSelection();
 		questionLabel.setText(questions.get(currentQuestion).getText());
 		firstAnswer.setText(answersOfQuestion.get(0).getContent());
+		firstAnswer.setBackground(new Color(211, 211, 211));
 		secondAnswer.setText(answersOfQuestion.get(1).getContent());
+		secondAnswer.setBackground(new Color(211, 211, 211));
 		thirdAnswer.setText(answersOfQuestion.get(2).getContent());
+		thirdAnswer.setBackground(new Color(211, 211, 211));
 
 	}
 
@@ -252,7 +258,11 @@ public class QuestionView extends JFrame {
 				button.setBackground(new Color(0,255,68));
 			}
 
-			if(Integer.parseInt(button.getName()) == i) {
+			if(Integer.parseInt(button.getName()) == i && answersOfQuestion.get(i).getIsRight() == true) {
+				button.setSelected(true);
+			}
+			else if(Integer.parseInt(button.getName()) == i )
+			{
 				button.setSelected(true);
 				button.setBackground(new Color(255,0,0));
 			}
