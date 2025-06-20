@@ -40,7 +40,7 @@ public class Answer {
         this.id = id;
     }
 
-    public boolean isIsRight() {
+    public boolean getIsRight() {
         return isRight;
     }
 

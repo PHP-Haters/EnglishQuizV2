@@ -223,7 +223,6 @@ public class QuestionView extends JFrame {
 	private void createUserAnswer() {
 		int selectedAnswer = getSelectedButtonText();
 		if(selectedAnswer != 5 && !answeredQuestions.contains(questions.get(currentQuestion))) {
-			System.err.println("penissss");
 			AnswerController answerController = new AnswerController();
 			answerController.setUserAnswer(answersOfQuestion.get(selectedAnswer));
 			answeredQuestions.add(questions.get(currentQuestion));
@@ -245,12 +244,19 @@ public class QuestionView extends JFrame {
 	}
 
 	private void deactivatedAnswer(int i) {
+		int f = 0;
 		for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
 
+			if(answersOfQuestion.get(f).getIsRight() == true) {
+				button.setBackground(new Color(0,255,68));
+			}
+
 			if(Integer.parseInt(button.getName()) == i) {
 				button.setSelected(true);
+				button.setBackground(new Color(255,0,0));
 			}
+			f++;
 			button.setEnabled(false);
 		}
 	}
