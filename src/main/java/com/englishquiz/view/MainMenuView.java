@@ -7,7 +7,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import com.englishquiz.controller.UserController;
 
-
 public class MainMenuView extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
@@ -16,17 +15,17 @@ public class MainMenuView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 499, 306);
         contentPane = new JPanel();
-        contentPane.setBackground(Color.WHITE);
+        contentPane.setBackground(new Color(16, 0, 36));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
 
         JLabel lblTitle = new JLabel("Escolha uma opção:");
         lblTitle.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 20));
+        lblTitle.setForeground(new Color(12, 156, 117));
 
-        JLabel lblUserInfo = createClickableLabel("Informações do usuário", "blue");
-        JLabel lblLevels = createClickableLabel("Níveis", "blue");
+        JLabel lblUserInfo = createClickableLabel("Informações do usuário", "white");
+        JLabel lblLevels = createClickableLabel("Níveis", "white");
         JLabel lblExit = createClickableLabel("Deslogar", "red");
-
         lblUserInfo.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 dispose();
@@ -42,15 +41,14 @@ public class MainMenuView extends JFrame {
                 levelsView.startView();
             }
         });
-
         lblExit.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-				//Todo: Limpar sessao e voltar para tela de login
-				UserController userController = new UserController();
-				userController.logout();
+                //Todo: Limpar sessao e voltar para tela de login
+                UserController userController = new UserController();
+                userController.logout();
                 dispose(); // Fecha a janela
-				LoginView loginView = new LoginView();
-				loginView.setVisible(true);
+                LoginView loginView = new LoginView();
+                loginView.setVisible(true);
             }
         });
 
